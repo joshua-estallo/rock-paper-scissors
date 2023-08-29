@@ -24,28 +24,32 @@ function playRound(playerSelection, computerSelection) {
 function game() {
   let computerScore = 0;
   let playerScore = 0;
-  for(let i = 0; i < 5; i++) {
-    playerSelection = prompt('rock, paper, or scissors');
-    computerSelection = getComputerChoice();
-    point = playRound(playerSelection, computerSelection);
-    if (point == -1) {
-      computerScore++;
-    } else if (point == 1) {
+  while(true) {
+    let playerChoice = prompt("rock, paper, or scissors?");
+    let computerChoice = getComputerChoice();
+
+    let point = playRound(playerChoice, computerChoice);
+
+    if(point == 1) {
       playerScore++;
+    } else if(point == -1) {
+      computerScore++;
     } else {
       continue;
     }
 
-  }
-  console.log(`Player Score: ${playerScore}`);
-  console.log(`Computer Score: ${computerScore}`);
-
-  if(playerScore > computerScore) {
-    console.log("You are winner.")
-  } else if(computerScore == playerScore) {
-    console.log("It is a tie.")
-  } else {
-    console.log("You are loser.")
+    // display scores
+    console.log(`Player score: ${playerScore}`)
+    console.log(`Computer score: ${computerScore}`)
+    
+    if(playerScore == 5) {
+      console.log("You are winner. You deserve to live one more day.")
+      break;
+    } 
+    if(computerScore == 5) {
+      console.log("You are loser. Commit seppuku now.");
+      break;
+    } 
   }
 }
 
